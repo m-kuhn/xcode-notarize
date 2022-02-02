@@ -36,7 +36,7 @@ const parseConfiguration = () => {
         productPath: core.getInput("product-path", {required: true}),
         username: core.getInput("appstore-connect-username"),
         password: core.getInput("appstore-connect-password"),
-        apiIssuer: core.getInput("appstore-connect-issuer"),
+        apiIssuer: core.getInput("appstore-connect-api-issuer"),
         apiKey: core.getInput("appstore-connect-api-key"),
         primaryBundleId: core.getInput("primary-bundle-id"),
         verbose: core.getInput("verbose") === "true",
