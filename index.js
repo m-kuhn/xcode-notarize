@@ -113,8 +113,8 @@ const submit = async ({productPath, archivePath, primaryBundleId, apiIssuer, api
         "--notarize-app",
         "-f", archivePath,
         "--primary-bundle-id", primaryBundleId,
-        "--apiIssuer", username,
-        "--apiKey", 
+        "--apiIssuer", apiIssuer,
+        "--apiKey", apiKey
     ];
 
     if (verbose === true) {
