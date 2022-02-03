@@ -93,6 +93,7 @@ const submit = async ({productPath, archivePath, primaryBundleId, apiIssuer, api
         if (fs.existsSync(path)) {
             const info = plist.parse(fs.readFileSync(path, "utf8"));
             primaryBundleId = info.CFBundleIdentifier;
+            core.info(`Primary Bundle Id '${primaryBundleId}' extracted from Info.plist`);
         }
     }
 
