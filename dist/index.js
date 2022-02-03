@@ -41,8 +41,10 @@ const sleep = (ms) => {
 const parseConfiguration = () => {
     const configuration = {
         productPath: core.getInput("product-path", {required: true}),
-        username: core.getInput("appstore-connect-username", {required: true}),
-        password: core.getInput("appstore-connect-password", {required: true}),
+        username: core.getInput("appstore-connect-username"),
+        password: core.getInput("appstore-connect-password"),
+        apiIssuer: core.getInput("appstore-connect-api-issuer"),
+        apiKey: core.getInput("appstore-connect-api-key"),
         primaryBundleId: core.getInput("primary-bundle-id"),
         verbose: core.getInput("verbose") === "true",
     };
@@ -77,7 +79,7 @@ const archive = async ({productPath}) => {
 };
 
 
-const submit = async ({productPath, archivePath, primaryBundleId, username, password, verbose}) => {
+const submit = async ({productPath, archivePath, primaryBundleId, apiIssuer, apiKey, verbose}) => {
     //
     // Make sure the product exists.
     //
@@ -118,8 +120,8 @@ const submit = async ({productPath, archivePath, primaryBundleId, username, pass
         "--notarize-app",
         "-f", archivePath,
         "--primary-bundle-id", primaryBundleId,
-        "-u", username,
-        "-p", password
+        "--apiIssuer", apiIssuer,
+        "--apiKey", apiKey
     ];
 
     if (verbose === true) {
@@ -134,6 +136,11 @@ const submit = async ({productPath, archivePath, primaryBundleId, username, pass
     }
 
     const {exitCode, stdout, stderr} = await xcrun;
+    core.debug('stdout')
+    core.debug(stdout)
+    core.debug('stderr')
+    core.debug(stderr)
+
 
     if (exitCode === undefined) {
         // TODO Command did not run at all
@@ -185,6 +192,10 @@ const wait = async ({uuid, username, password, verbose}) => {
         }
 
         const {exitCode, stdout, stderr} = await xcrun;
+        core.debug('stdout')
+        core.debug(stdout)
+        core.debug('stderr')
+        core.debug(stderr)
 
         if (exitCode === undefined) {
             // TODO Command did not run at all

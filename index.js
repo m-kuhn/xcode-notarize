@@ -129,6 +129,11 @@ const submit = async ({productPath, archivePath, primaryBundleId, apiIssuer, api
     }
 
     const {exitCode, stdout, stderr} = await xcrun;
+    core.debug('stdout')
+    core.debug(stdout)
+    core.debug('stderr')
+    core.debug(stderr)
+
 
     if (exitCode === undefined) {
         // TODO Command did not run at all
@@ -180,6 +185,10 @@ const wait = async ({uuid, username, password, verbose}) => {
         }
 
         const {exitCode, stdout, stderr} = await xcrun;
+        core.debug('stdout')
+        core.debug(stdout)
+        core.debug('stderr')
+        core.debug(stderr)
 
         if (exitCode === undefined) {
             // TODO Command did not run at all
