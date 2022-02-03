@@ -114,7 +114,8 @@ const submit = async ({productPath, archivePath, primaryBundleId, apiIssuer, api
         "-f", archivePath,
         "--primary-bundle-id", primaryBundleId,
         "--apiIssuer", apiIssuer,
-        "--apiKey", apiKey
+        "--apiKey", apiKey,
+        "--primary-bundle-ide", "ch.opengis.qfield"
     ];
 
     if (verbose === true) {
