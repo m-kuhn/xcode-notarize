@@ -107,6 +107,9 @@ const submit = async ({productPath, archivePath, primaryBundleId, apiIssuer, api
     // that we need to poll using the request UUID that is returned.
     //
 
+    await fs.mkdirSync("private_keys", { recursive: true });
+    await fs.promises.writeFile("private_keys/AuthKey_ABCD.p8", apiKey, { encoding: "utf-8" });
+
     const args = [
         "altool",
         "--output-format", "json",
@@ -114,8 +117,7 @@ const submit = async ({productPath, archivePath, primaryBundleId, apiIssuer, api
         "-f", archivePath,
         "--primary-bundle-id", primaryBundleId,
         "--apiIssuer", apiIssuer,
-        "--apiKey", apiKey,
-        "--primary-bundle-ide", "ch.opengis.qfield"
+        "--apiKey", "ABCD"
     ];
 
     if (verbose === true) {
